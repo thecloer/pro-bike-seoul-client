@@ -1,4 +1,4 @@
-import siteMeta from '@/config/siteMeta';
+import siteMeta from '@/configs/siteMeta';
 import { ReactComponent as GithubIcon } from '@/lib/svg/github.svg';
 
 function Header() {
