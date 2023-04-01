@@ -2,19 +2,19 @@ import type { PositionInfo } from '@/types/geo.type';
 import { useReducer, createContext, PropsWithChildren, useContext } from 'react';
 
 export type PathPointInfo =
+  | { text: string }
   | ({
       text: string;
-    } & PositionInfo)
-  | null;
+    } & PositionInfo);
 
 type PathContextState = {
   start: PathPointInfo;
-  ent: PathPointInfo;
+  end: PathPointInfo;
 };
 
 const defaultPath: PathContextState = {
-  start: null,
-  ent: null,
+  start: { text: '' },
+  end: { text: '' },
 };
 
 type PathContextAction =
@@ -23,16 +23,16 @@ type PathContextAction =
   | { type: 'SET_END'; point: PathPointInfo };
 
 function reducer(state: PathContextState, action: PathContextAction): PathContextState {
-  const { start, ent } = state;
+  const { start, end } = state;
   switch (action.type) {
     case 'SWAP_POINTS': {
-      return { start: ent, ent: start };
+      return { start: end, end: start };
     }
     case 'SET_START': {
       return { ...state, start: action.point };
     }
     case 'SET_END': {
-      return { ...state, ent: action.point };
+      return { ...state, end: action.point };
     }
   }
 }
