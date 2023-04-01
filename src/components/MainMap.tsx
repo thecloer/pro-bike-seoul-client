@@ -4,11 +4,11 @@ import useWatchPosition from '@/hooks/useWatchPosition';
 import CurrentLocationMarker from '@/components/CurrentLocationMarker';
 import PanToCurrentLocationButton from '@/components/PanToCurrentLocationButton';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
-import SelectedPointMarker from './SelectedPointMarker';
+import SelectedPointMarker from '@/components/SelectedPointMarker';
+import PathPanel from '@/components/pathPanel/PathPanel';
 
 export default function MainMap() {
   const currentPosition = useWatchPosition();
-
   const { setSelectedPoint } = useSelectedPoint();
 
   const onMapClick = (target: kakao.maps.Map, mouseEvent: kakao.maps.event.MouseEvent) => {
@@ -33,6 +33,7 @@ export default function MainMap() {
       )}
 
       <SelectedPointMarker />
+      <PathPanel />
     </Map>
   );
 }
