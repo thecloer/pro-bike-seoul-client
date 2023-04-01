@@ -1,6 +1,13 @@
 import { Map } from 'react-kakao-maps-sdk';
 import { UOS_POSITION } from '@/config/defaultValues';
+import useWatchPosition from '@/hooks/useWatchPosition';
+import CurrentLocationMarker from '@/components/CurrentLocationMarker';
 
 export default function MainMap() {
-  return <Map center={UOS_POSITION} className='w-full h-full z-0'></Map>;
+  const currentPosition = useWatchPosition();
+  return (
+    <Map center={currentPosition.loaded ? currentPosition.coords : UOS_POSITION} className='w-full h-full z-0'>
+      {currentPosition.loaded && <CurrentLocationMarker center={currentPosition.coords} />}
+    </Map>
+  );
 }
