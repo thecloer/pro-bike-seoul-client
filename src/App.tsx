@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import MainMap from '@/components/MainMap';
 import { SelectedPointProvider } from '@/contexts/SelectedPointContext';
-import { PathProvider } from './contexts/pathContext';
+import { PathProvider } from '@/contexts/PathContext';
 
 function App() {
   return (
