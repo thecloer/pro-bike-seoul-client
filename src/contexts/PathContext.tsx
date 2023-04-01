@@ -1,9 +1,15 @@
-import type { PathPointInfo } from '@/types/path.type';
+import type { PositionInfo } from '@/types/geo.type';
 import { useReducer, createContext, PropsWithChildren, useContext } from 'react';
 
+export type PathPointInfo =
+  | ({
+      text: string;
+    } & PositionInfo)
+  | null;
+
 type PathContextState = {
-  start: PathPointInfo | null;
-  ent: PathPointInfo | null;
+  start: PathPointInfo;
+  ent: PathPointInfo;
 };
 
 const defaultPath: PathContextState = {
