@@ -7,6 +7,6 @@ export type Position = {
 export type PositionInfo = Position & {
   id?: string;
   name?: string;
-  addressName?: string;
-  roadAddressName?: string;
+  address?: string;
+  roadAddress?: string;
 };

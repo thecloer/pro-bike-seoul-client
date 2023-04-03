@@ -23,10 +23,9 @@ export default function PathPointInput({ placeholder, point, setPoint }: Props) 
       lng: Number(item.x),
       name: item.place_name,
       id: item.id,
-      addressName: item.address_name,
-      roadAddressName: item.road_address_name,
+      address: item.address_name,
+      roadAddress: item.road_address_name,
     };
-    console.log(point);
 
     setSelectedPoint(point);
     setPoint(point);
