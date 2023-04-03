@@ -38,8 +38,8 @@ const useWatchPosition = () => {
       });
 
     const options: PositionOptions = {
-      maximumAge: 3000,
-      timeout: 5000,
+      maximumAge: 1000 * 30, // 30 seconds
+      timeout: Infinity,
       enableHighAccuracy: true,
     };
 
