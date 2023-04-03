@@ -23,11 +23,11 @@ export default React.memo(function StationMarker({
   return (
     <CustomDiv
       center={{ lat, lng }}
-      className='relative hover:cursor-pointer h-10 w-10'
+      className='hover:cursor-pointer h-10 w-10 p-1'
       onClick={onMarkerClick}
       onMouseDown={(e) => e.stopPropagation()}
     >
-      <LocationIcon className='absolute bottom-1/2 left-0 w-full h-full p-1 text-primary-600' />
+      <LocationIcon className='absolute bottom-1/2 left-0 w-full h-full text-primary-600' />
     </CustomDiv>
   );
 });
