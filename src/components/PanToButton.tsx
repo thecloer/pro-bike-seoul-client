@@ -1,6 +1,6 @@
 import type { Position } from '@/types/geo.type';
-import { PropsWithChildren } from 'react';
-import { useMap } from 'react-kakao-maps-sdk';
+import type { PropsWithChildren } from 'react';
+import usePanTo from '@/hooks/usePanTo';
 
 type Props = {
   className: string;
@@ -8,11 +8,12 @@ type Props = {
 };
 
 export default function PanToButton({ to, className, children }: PropsWithChildren<Props>) {
-  const Map = useMap();
-  const moveMap = () => Map.panTo(new kakao.maps.LatLng(to.lat, to.lng));
+  const panTo = usePanTo();
+
+  const onClick = () => panTo(to);
 
   return (
-    <button className={className} onClick={moveMap}>
+    <button className={className} onClick={onClick}>
       {children}
     </button>
   );

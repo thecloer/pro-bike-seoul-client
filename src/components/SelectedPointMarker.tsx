@@ -1,13 +1,14 @@
-import { useSelectedPoint } from '@/contexts/SelectedPointContext';
 import { useEffect } from 'react';
-import { MapMarker, useMap } from 'react-kakao-maps-sdk';
+import { MapMarker } from 'react-kakao-maps-sdk';
+import { useSelectedPoint } from '@/contexts/SelectedPointContext';
+import usePanTo from '@/hooks/usePanTo';
 
 export default function SelectedPointMarker() {
-  const Map = useMap();
   const { selectedPoint, setSelectedPoint } = useSelectedPoint();
+  const panTo = usePanTo();
 
   useEffect(() => {
-    if (selectedPoint !== null) Map.panTo(new kakao.maps.LatLng(selectedPoint.lat, selectedPoint.lng));
+    if (selectedPoint !== null) panTo(selectedPoint);
   }, [selectedPoint, Map]);
 
   if (selectedPoint === null) return null;
