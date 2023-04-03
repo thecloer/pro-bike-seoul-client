@@ -35,12 +35,13 @@ export default function MainMap() {
       const nearStations = stationNearbyResult.data;
 
       // FIXME: dummy data -> seoul bike api data
-      const dummyStations: StationInfo[] = nearStations.map(({ lat, lng, stationId, address, stationName }) => ({
+      const dummyStations: StationInfo[] = nearStations.map(({ lat, lng, stationId, address, addressName }) => ({
         id: stationId,
         lat,
         lng,
         address,
-        name: stationName,
+        addressName,
+        name: 'dummy station',
         rackCount: 10,
         availableBikeCount: 5,
       }));

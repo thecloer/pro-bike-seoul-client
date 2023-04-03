@@ -4,7 +4,7 @@ export type ServerStationInfo = Position & {
   id: number;
   stationId: string;
   address: string;
-  stationName: string;
+  addressName: string;
 };
 
 /**
@@ -32,6 +32,7 @@ export type StationInfo = Position & {
   id: string;
   name: string;
   address: string;
+  addressName: string;
   rackCount: number;
   availableBikeCount: number;
 };
