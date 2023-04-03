@@ -5,10 +5,9 @@ import { AbstractOverlay } from 'react-kakao-maps-sdk';
 
 type Props = {
   center: Position;
-  className?: string;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-export default function CustomDiv({ center, className, children }: PropsWithChildren<Props>) {
+export default function CustomDiv({ center, children, ...props }: PropsWithChildren<Props>) {
   const node = useRef(document.createElement('div'));
 
   const positionLatLng = useMemo(() => new kakao.maps.LatLng(center.lat, center.lng), [center.lat, center.lng]);
@@ -40,7 +39,7 @@ export default function CustomDiv({ center, className, children }: PropsWithChil
   return (
     <>
       <AbstractOverlay onAdd={onAdd} onRemove={onRemove} draw={draw} />
-      {createPortal(<div className={className}>{children}</div>, node.current)}
+      {createPortal(<div {...props}>{children}</div>, node.current)}
     </>
   );
 }
