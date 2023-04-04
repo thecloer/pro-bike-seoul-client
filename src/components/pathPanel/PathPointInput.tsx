@@ -1,8 +1,9 @@
+import type { KakaoPlace } from '@/types/response.type';
 import { useEffect, useState } from 'react';
 import useDebounce from '@/hooks/useDebounce';
 import { PathPointInfo } from '@/contexts/PathContext';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
-import { SEOUL_BOUND } from '@/configs/api';
+import fetchKakaoKeywordSearch from '@/fetches/thirdParty/fetchKakaoKeywordSearch';
 
 type Props = {
   placeholder?: string;
@@ -14,10 +15,10 @@ export default function PathPointInput({ placeholder, point, setPoint }: Props) 
   const { setSelectedPoint } = useSelectedPoint();
   const [isListOpen, setIsListOpen] = useState(false);
 
-  const [searchResult, setSearchResult] = useState<kakao.maps.services.PlacesSearchResult>([]);
+  const [searchResult, setSearchResult] = useState<KakaoPlace[]>([]);
   const searchKeyword = useDebounce(point.text, 500);
 
-  const selectItem = (item: kakao.maps.services.PlacesSearchResultItem) => {
+  const selectItem = (item: KakaoPlace) => {
     const point: PathPointInfo = {
       text: item.place_name,
       lat: Number(item.y),
@@ -40,20 +41,13 @@ export default function PathPointInput({ placeholder, point, setPoint }: Props) 
     }
 
     // TODO: add react-query
-    const ps = new kakao.maps.services.Places();
-    const options: kakao.maps.services.PlacesSearchOptions = {
-      size: 10, // 1 ~ 15
-      bounds: SEOUL_BOUND,
+    const getSearchKeywordResult = async () => {
+      const result = await fetchKakaoKeywordSearch(searchKeyword);
+      if (result.success) return setSearchResult(result.data);
+      console.error(result);
+      setSearchResult([]);
     };
-
-    ps.keywordSearch(
-      searchKeyword,
-      (data, status) => {
-        if (status === kakao.maps.services.Status.OK) setSearchResult(data);
-        else if (status === kakao.maps.services.Status.ZERO_RESULT) setSearchResult([]);
-      },
-      options
-    );
+    getSearchKeywordResult();
   }, [searchKeyword]);
 
   return (

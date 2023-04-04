@@ -24,8 +24,6 @@ export const SEOUL_BIKE_STATION_STATUS_API_RESULTS = {
   ],
 } as const;
 
-// https://apis.map.kakao.com/web/documentation/#services_Places_keywordSearch
-const SEOUL_SW = new kakao.maps.LatLng(37.413294, 126.734086),
-  SEOUL_NE = new kakao.maps.LatLng(37.715133, 127.269311);
-
-export const SEOUL_BOUND = new kakao.maps.LatLngBounds(SEOUL_SW, SEOUL_NE);
+export const KAKAO_REST_API_AUTHORIZATION_HEADER = {
+  Authorization: `KakaoAK ${import.meta.env.VITE_KAKAO_REST_KEY}`,
+};
