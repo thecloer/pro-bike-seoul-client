@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import useDebounce from '@/hooks/useDebounce';
 import { PathPointInfo } from '@/contexts/PathContext';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
+import { SEOUL_BOUND } from '@/configs/api';
 
 type Props = {
   placeholder?: string;
@@ -42,6 +43,7 @@ export default function PathPointInput({ placeholder, point, setPoint }: Props) 
     const ps = new kakao.maps.services.Places();
     const options: kakao.maps.services.PlacesSearchOptions = {
       size: 10, // 1 ~ 15
+      bounds: SEOUL_BOUND,
     };
 
     ps.keywordSearch(

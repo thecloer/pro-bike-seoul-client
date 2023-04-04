@@ -1,3 +1,4 @@
+// urls
 export const SERVER_API_URL = `${import.meta.env.VITE_SERVER_URL}/api/v1`;
 export const makeBikeListUrl = (startIdx: number, endIdx: number) =>
   `http://openapi.seoul.go.kr:8088/${import.meta.env.VITE_SEOUL_BIKE_KEY}/json/bikeList/${startIdx}/${endIdx}`;
@@ -22,3 +23,9 @@ export const SEOUL_BIKE_STATION_STATUS_API_RESULTS = {
     { CODE: 'INFO-200', MESSAGE: '해당하는 데이터가 없습니다.' },
   ],
 } as const;
+
+// https://apis.map.kakao.com/web/documentation/#services_Places_keywordSearch
+const SEOUL_SW = new kakao.maps.LatLng(37.413294, 126.734086),
+  SEOUL_NE = new kakao.maps.LatLng(37.715133, 127.269311);
+
+export const SEOUL_BOUND = new kakao.maps.LatLngBounds(SEOUL_SW, SEOUL_NE);
