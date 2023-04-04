@@ -1,5 +1,5 @@
 import { SEOUL_BIKE_STATION_STATUS_API_RESULTS } from '@/configs/api';
-import { SeoulBikeStationStatusInfo } from '@/types/entity.type';
+import { SeoulBikeStationStatusInfo } from '@/types/data.type';
 
 type ApiResponseSuccess<Data> = {
   success: true;
@@ -13,6 +13,10 @@ type ApiResponseFail = {
   message: string | string[];
 };
 export type ApiResponse<Data> = ApiResponseSuccess<Data> | ApiResponseFail;
+
+/**
+ * Seoul Bike Station Status API
+ */
 
 // https://data.seoul.go.kr/dataList/OA-15493/A/1/datasetView.do#
 export type SeoulBikeStationStatusApiResponseSuccess = {

@@ -1,5 +1,5 @@
 import { SEOUL_BIKE_STATION_STATUS_API_RESULTS, makeBikeListUrl } from '@/configs/api';
-import { SeoulBikeStationStatusInfo } from '@/types/entity.type';
+import { SeoulBikeStationStatusInfo } from '@/types/data.type';
 import { ApiResponse, SeoulBikeStationStatusApiResponse, SeoulBikeStationStatusApiResponseSuccess } from '@/types/response.type';
 
 const isSuccess = (

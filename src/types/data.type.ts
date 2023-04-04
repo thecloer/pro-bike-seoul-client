@@ -1,11 +1,15 @@
 import { Position } from './geo.type';
 
+// server data types
+
 export type ServerStationInfo = Position & {
   id: number;
   stationId: string;
   address: string;
   addressName: string;
 };
+
+// Seoul API data types
 
 /**
  * @see https://data.seoul.go.kr/dataList/OA-15493/A/1/datasetView.do#
@@ -27,6 +31,10 @@ export type SeoulBikeStationStatusInfo = {
   parkingBikeTotCnt: string; // 자전거주차총건수
   shared: string; // 거치율 = parkingBikeTotCnt / rackTotCnt
 };
+
+// Kakao API data types
+
+// Client data types
 
 export type StationInfo = Position & {
   id: string;

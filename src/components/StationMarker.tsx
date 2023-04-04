@@ -1,4 +1,4 @@
-import type { StationInfo } from '@/types/entity.type';
+import type { StationInfo } from '@/types/data.type';
 import React, { useState } from 'react';
 import MarkerInfoWindow from '@/components/MarkerInfoWindow';
 import CustomDiv from '@/components/CustomDiv';

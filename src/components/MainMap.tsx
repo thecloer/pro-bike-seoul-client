@@ -1,4 +1,4 @@
-import type { SeoulBikeStationStatusInfo, StationInfo } from '@/types/entity.type';
+import type { SeoulBikeStationStatusInfo, StationInfo } from '@/types/data.type';
 import { Map } from 'react-kakao-maps-sdk';
 import { useEffect, useState } from 'react';
 import { UOS_POSITION } from '@/configs/defaultValues';
