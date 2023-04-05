@@ -7,7 +7,7 @@ const isSuccess = (
 ): response is SeoulBikeStationStatusApiResponseSuccess =>
   SEOUL_BIKE_STATION_STATUS_API_RESULTS.SUCCESS.some(({ CODE }) => CODE === response.RESULT.CODE);
 
-const fetchStationStatus = async (startIdx: number, endIdx: number): Promise<ApiResponse<SeoulBikeStationStatusInfo[]>> => {
+const fetchStationsStatus = async (startIdx: number, endIdx: number): Promise<ApiResponse<SeoulBikeStationStatusInfo[]>> => {
   const url = makeBikeListUrl(startIdx, endIdx);
 
   try {
@@ -28,7 +28,7 @@ const fetchStationStatus = async (startIdx: number, endIdx: number): Promise<Api
           message: response.RESULT.MESSAGE,
         };
   } catch (error) {
-    console.log('ERROR in fetchStationStatus');
+    console.log('ERROR in fetchStationsStatus');
     console.error(error);
     return {
       success: false,
@@ -40,4 +40,4 @@ const fetchStationStatus = async (startIdx: number, endIdx: number): Promise<Api
   }
 };
 
-export default fetchStationStatus;
+export default fetchStationsStatus;
