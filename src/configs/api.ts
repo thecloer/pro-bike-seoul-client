@@ -1,7 +1,7 @@
 // Server API
 export const SERVER_API = {
   URL: `${import.meta.env.VITE_SERVER_URL}/api/v1`,
-};
+} as const;
 
 // Seoul Bike API
 export const SEOUL_BIKE_STATION_STATUS_API = {
@@ -24,12 +24,12 @@ export const SEOUL_BIKE_STATION_STATUS_API = {
       { CODE: 'ERROR-601', MESSAGE: 'SQL 문장 오류 입니다.' },
       { CODE: 'INFO-200', MESSAGE: '해당하는 데이터가 없습니다.' },
     ],
-  } as const,
+  },
   makeUrl: (startIdx: number, endIdx: number) =>
     `http://openapi.seoul.go.kr:8088/${import.meta.env.VITE_SEOUL_BIKE_KEY}/json/bikeList/${startIdx}/${endIdx}`,
-};
+} as const;
 
 // Kakao REST API
 export const KAKAO_REST_API = {
   AUTHORIZATION_HEADER: { Authorization: `KakaoAK ${import.meta.env.VITE_KAKAO_REST_KEY}` },
-};
+} as const;
