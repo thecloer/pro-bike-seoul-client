@@ -1,14 +1,14 @@
-import { SEOUL_BIKE_STATION_STATUS_API_RESULTS, makeBikeListUrl } from '@/configs/api';
+import { SEOUL_BIKE_STATION_STATUS_API } from '@/configs/api';
 import { SeoulBikeStationStatusInfo } from '@/types/data.type';
 import { ApiResponse, SeoulBikeStationStatusApiResponse, SeoulBikeStationStatusApiResponseSuccess } from '@/types/response.type';
 
 const isSuccess = (
   response: SeoulBikeStationStatusApiResponse['rentBikeStatus']
 ): response is SeoulBikeStationStatusApiResponseSuccess =>
-  SEOUL_BIKE_STATION_STATUS_API_RESULTS.SUCCESS.some(({ CODE }) => CODE === response.RESULT.CODE);
+  SEOUL_BIKE_STATION_STATUS_API.RESULTS.SUCCESS.some(({ CODE }) => CODE === response.RESULT.CODE);
 
 const fetchStationsStatus = async (startIdx: number, endIdx: number): Promise<ApiResponse<SeoulBikeStationStatusInfo[]>> => {
-  const url = makeBikeListUrl(startIdx, endIdx);
+  const url = SEOUL_BIKE_STATION_STATUS_API.makeUrl(startIdx, endIdx);
 
   try {
     const { rentBikeStatus: response }: SeoulBikeStationStatusApiResponse = await fetch(url, {

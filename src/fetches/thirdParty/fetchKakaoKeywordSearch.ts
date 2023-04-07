@@ -1,4 +1,4 @@
-import { KAKAO_REST_API_AUTHORIZATION_HEADER } from '@/configs/api';
+import { KAKAO_REST_API } from '@/configs/api';
 import { ApiResponse, KakaoApiResponse, KakaoPlace } from '@/types/response.type';
 
 const fetchKakaoKeywordSearch = async (
@@ -14,7 +14,7 @@ const fetchKakaoKeywordSearch = async (
   try {
     const response: KakaoApiResponse<'keywordSearch'> = await fetch(url, {
       method: 'GET',
-      headers: KAKAO_REST_API_AUTHORIZATION_HEADER,
+      headers: KAKAO_REST_API.AUTHORIZATION_HEADER,
     }).then((res) => res.json());
 
     if ('documents' in response) {

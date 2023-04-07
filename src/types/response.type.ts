@@ -1,4 +1,4 @@
-import { SEOUL_BIKE_STATION_STATUS_API_RESULTS } from '@/configs/api';
+import { SEOUL_BIKE_STATION_STATUS_API } from '@/configs/api';
 import { SeoulBikeStationStatusInfo } from '@/types/data.type';
 
 type ApiResponseSuccess<Data> = {
@@ -20,12 +20,12 @@ export type ApiResponse<Data> = ApiResponseSuccess<Data> | ApiResponseFail;
 
 // https://data.seoul.go.kr/dataList/OA-15493/A/1/datasetView.do#
 export type SeoulBikeStationStatusApiResponseSuccess = {
-  RESULT: typeof SEOUL_BIKE_STATION_STATUS_API_RESULTS.SUCCESS[number];
+  RESULT: typeof SEOUL_BIKE_STATION_STATUS_API.RESULTS.SUCCESS[number];
   list_total_count: number;
   row: SeoulBikeStationStatusInfo[];
 };
 type SeoulBikeStationStatusApiResponseFail = {
-  RESULT: typeof SEOUL_BIKE_STATION_STATUS_API_RESULTS.FAIL[number];
+  RESULT: typeof SEOUL_BIKE_STATION_STATUS_API.RESULTS.FAIL[number];
 };
 export type SeoulBikeStationStatusApiResponse = {
   rentBikeStatus: SeoulBikeStationStatusApiResponseSuccess | SeoulBikeStationStatusApiResponseFail;
