@@ -2,12 +2,15 @@ import type { SeoulBikeStationStatusInfo } from '@/types/data.type';
 import type { ApiResponse } from '@/types/response.type';
 import { useQueries } from '@tanstack/react-query';
 import fetchStationsStatus from '@/fetches/thirdParty/fetchStationsStatus';
+import { SEOUL_BIKE_STATION_STATUS_API } from '@/configs/api';
 
-const stationStatusIndexes = [
-  { startIdx: 1, endIdx: 1000 },
-  { startIdx: 1001, endIdx: 2000 },
-  { startIdx: 2001, endIdx: 3000 },
-] as const;
+const { CHUNK_COUNT, TOTAL_COUNT } = SEOUL_BIKE_STATION_STATUS_API.DATA;
+const CHUNK_LENGTH = Math.ceil(TOTAL_COUNT / CHUNK_COUNT);
+
+const stationStatusIndexes = Array.from({ length: CHUNK_COUNT }, (_, i) => ({
+  startIdx: i * CHUNK_LENGTH + 1,
+  endIdx: (i + 1) * CHUNK_LENGTH,
+}));
 
 export default function useStationsStatus() {
   return useQueries({

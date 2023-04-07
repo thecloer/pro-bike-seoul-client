@@ -25,6 +25,10 @@ export const SEOUL_BIKE_STATION_STATUS_API = {
       { CODE: 'INFO-200', MESSAGE: '해당하는 데이터가 없습니다.' },
     ],
   },
+  DATA: {
+    TOTAL_COUNT: 2700, // 2692 stations
+    CHUNK_COUNT: 3,
+  },
   makeUrl: (startIdx: number, endIdx: number) =>
     `http://openapi.seoul.go.kr:8088/${import.meta.env.VITE_SEOUL_BIKE_KEY}/json/bikeList/${startIdx}/${endIdx}`,
 } as const;
