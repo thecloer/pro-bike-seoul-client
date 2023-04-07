@@ -1,4 +1,4 @@
-import type { Position } from '@/types/geo.type';
+import type { Position } from '@/types/data.type';
 import PanToButton from '@/components/PanToButton';
 import { ReactComponent as LocationIcon } from '@/lib/svg/location.svg';
 

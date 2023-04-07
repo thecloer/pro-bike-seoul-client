@@ -1,10 +1,10 @@
-import type { Position } from '@/types/geo.type';
+import type { SelectedPoint } from '@/types/data.type';
 import type { SeoulBikeStationStatusInfo, StationInfo } from '@/types/data.type';
 import { isSuccessAndStale, leftJoinStationNearbyAndStationStatus } from '@/lib/helpers';
 import useStationsNearby from '@/hooks/queries/useStationsNearby';
 import useStationsStatus from '@/hooks/queries/useStationsStatus';
 
-export default function useStationsNearbyStatus(point: Position | null) {
+export default function useStationsNearbyStatus(point: SelectedPoint) {
   const stationsNearbyQuery = useStationsNearby(point);
   const stationsStatusQueries = useStationsStatus();
 

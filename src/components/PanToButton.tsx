@@ -1,4 +1,4 @@
-import type { Position } from '@/types/geo.type';
+import type { Position } from '@/types/data.type';
 import type { PropsWithChildren } from 'react';
 import usePanTo from '@/hooks/usePanTo';
 

@@ -1,7 +1,6 @@
-import type { PositionInfo } from '@/types/geo.type';
+import type { SelectedPoint } from '@/types/data.type';
 import { createContext, Dispatch, useContext, SetStateAction, PropsWithChildren, useState } from 'react';
 
-type SelectedPoint = PositionInfo | null;
 type SelectedPointContext = {
   selectedPoint: SelectedPoint;
   setSelectedPoint: Dispatch<SetStateAction<SelectedPoint>>;

@@ -1,4 +1,4 @@
-import type { Position } from '@/types/geo.type';
+import type { Position } from '@/types/data.type';
 import { PropsWithChildren, useEffect, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { AbstractOverlay } from 'react-kakao-maps-sdk';

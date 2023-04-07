@@ -1,4 +1,4 @@
-import type { Position } from '@/types/geo.type';
+import type { Position } from '@/types/data.type';
 import CustomDiv from '@/components/CustomDiv';
 
 type Props = {

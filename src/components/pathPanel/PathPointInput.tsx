@@ -1,7 +1,7 @@
 import type { KakaoPlace } from '@/types/response.type';
+import type { PathPointInfo } from '@/types/data.type';
 import { useEffect, useState } from 'react';
 import useDebounce from '@/hooks/useDebounce';
-import { PathPointInfo } from '@/contexts/PathContext';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
 import fetchKakaoKeywordSearch from '@/fetches/thirdParty/fetchKakaoKeywordSearch';
 

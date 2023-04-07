@@ -1,5 +1,3 @@
-import { Position } from './geo.type';
-
 // server data types
 
 export type ServerStationInfo = Position & {
@@ -36,6 +34,11 @@ export type SeoulBikeStationStatusInfo = {
 
 // Client data types
 
+export type Position = {
+  lat: number;
+  lng: number;
+};
+
 export type StationInfo = Position & {
   id: string;
   name: string;
@@ -44,3 +47,19 @@ export type StationInfo = Position & {
   rackCount: number;
   availableBikeCount: number;
 };
+
+// kakao.maps.services.PlacesSearchResultItem
+export type PositionInfo = Position & {
+  id?: string; // FIXME: not stationId. db id
+  name?: string;
+  address?: string;
+  roadAddress?: string;
+};
+
+type SearchKeywordInfo = {
+  text: string;
+};
+
+export type SelectedPoint = (PositionInfo & Partial<SearchKeywordInfo>) | null;
+
+export type PathPointInfo = SearchKeywordInfo | (SearchKeywordInfo & PositionInfo);
