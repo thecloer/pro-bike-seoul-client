@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default React.memo(function StationMarker({
-  station: { id: stationId, name: stationName, lat, lng, address, addressName, rackCount, availableBikeCount },
+  station: { stationId, name: stationName, lat, lng, address, addressName, rackCount, availableBikeCount },
 }: Props) {
   const { setSelectedPoint } = useSelectedPoint();
   const { setStartPoint, setEndPoint } = usePath();

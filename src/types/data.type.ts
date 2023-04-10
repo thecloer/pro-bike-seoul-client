@@ -1,7 +1,6 @@
 // server data types
 
 export type ServerStationInfo = Position & {
-  id: number;
   stationId: string;
   address: string;
   addressName: string;
@@ -40,7 +39,7 @@ export type Position = {
 };
 
 export type StationInfo = Position & {
-  id: string;
+  stationId: string;
   name: string;
   address: string;
   addressName: string;

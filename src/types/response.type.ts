@@ -1,5 +1,5 @@
+import type { SeoulBikeStationStatusInfo } from '@/types/data.type';
 import { SEOUL_BIKE_STATION_STATUS_API } from '@/configs/api';
-import { SeoulBikeStationStatusInfo } from '@/types/data.type';
 
 type ApiResponseSuccess<Data> = {
   success: true;
@@ -61,7 +61,9 @@ type KakaoLocalMeta = {
   total_count: number;
 };
 
-type KakaoApiResponseSuccess<Method extends 'keywordSearch' | 'coord2Address'> = Method extends 'keywordSearch'
+type KakaoApiMethod = 'keywordSearch' | 'coord2Address';
+
+type KakaoApiResponseSuccess<Method extends KakaoApiMethod> = Method extends 'keywordSearch'
   ? {
       meta: KakaoPlaceMeta;
       documents: KakaoPlace[];
@@ -78,6 +80,4 @@ type KakaoApiResponseFail = {
   message: string;
 };
 
-export type KakaoApiResponse<Method extends 'keywordSearch' | 'coord2Address'> =
-  | KakaoApiResponseSuccess<Method>
-  | KakaoApiResponseFail;
+export type KakaoApiResponse<Method extends KakaoApiMethod> = KakaoApiResponseSuccess<Method> | KakaoApiResponseFail;
