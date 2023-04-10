@@ -1,15 +1,15 @@
 import type { SelectedPoint } from '@/types/data.type';
-import { useQuery } from '@tanstack/react-query';
 import fetchStationsNearby from '@/fetches/server/fetchStationsNearby';
+import { useQuery } from '@tanstack/react-query';
 
 export default function useStationsNearby(selectedPoint: SelectedPoint) {
   return useQuery({
-    queryKey: ['stationNearby', selectedPoint],
+    queryKey: ['useStationsNearby', selectedPoint],
     queryFn: () => selectedPoint && fetchStationsNearby(selectedPoint),
     enabled: !!selectedPoint,
     select: (response) => {
       if (response?.success) return response.data;
-      console.log('ERROR in stationsNearbyQuery');
+      console.log('ERROR in useStationsNearby');
       console.error(response);
       return [];
     },

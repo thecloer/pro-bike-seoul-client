@@ -8,13 +8,12 @@ import { useSelectedPoint } from '@/contexts/SelectedPointContext';
 import SelectedPointMarker from '@/components/SelectedPointMarker';
 import StationMarker from '@/components/StationMarker';
 import PathPanel from '@/components/pathPanel/PathPanel';
-import useStationsNearbyStatus from '@/hooks/queries/useStationsNearbyStatus';
+import useStationsNearby from '@/hooks/queries/useStationsNearby';
 
 export default function MainMap() {
   const currentPosition = useWatchPosition();
   const { selectedPoint, setSelectedPoint } = useSelectedPoint();
-
-  const { stations, isSuccess: isStationSuccess, refetchStatus } = useStationsNearbyStatus(selectedPoint);
+  const stationsQuery = useStationsNearby(selectedPoint);
 
   const onMapClick = (target: kakao.maps.Map, mouseEvent: kakao.maps.event.MouseEvent) => {
     (document.activeElement as HTMLElement).blur(); // blur input
@@ -23,10 +22,6 @@ export default function MainMap() {
       lng: mouseEvent.latLng.getLng(),
     });
   };
-
-  useEffect(() => {
-    if (isStationSuccess) refetchStatus();
-  }, [isStationSuccess, selectedPoint]);
 
   return (
     <Map
@@ -41,9 +36,8 @@ export default function MainMap() {
         </>
       )}
 
-      {stations.map((station) => (
-        <StationMarker key={station.stationId} station={station} />
-      ))}
+      {stationsQuery.isSuccess &&
+        stationsQuery.data.map((station) => <StationMarker key={station.stationId} station={station} />)}
 
       <SelectedPointMarker />
       <PathPanel />

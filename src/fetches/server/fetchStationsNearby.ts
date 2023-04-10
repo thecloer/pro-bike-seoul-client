@@ -1,7 +1,6 @@
-import type { Position } from '@/types/data.type';
+import type { Position, ServerStationInfo } from '@/types/data.type';
 import { SERVER_API } from '@/configs/api';
 import { ApiResponse } from '@/types/response.type';
-import { ServerStationInfo } from '@/types/data.type';
 
 const SEARCH_RADIUS = 600; // meters
 
