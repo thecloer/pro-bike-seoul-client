@@ -24,7 +24,6 @@ export default function PathPointInput({ placeholder, point, setPoint }: Props) 
       lat: Number(item.y),
       lng: Number(item.x),
       name: item.place_name,
-      id: item.id,
       address: item.address_name,
       roadAddress: item.road_address_name,
     };

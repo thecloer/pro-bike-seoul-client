@@ -50,7 +50,6 @@ export type StationInfo = Position & {
 
 // kakao.maps.services.PlacesSearchResultItem
 export type PositionInfo = Position & {
-  id?: string; // FIXME: not stationId. db id
   name?: string;
   address?: string;
   roadAddress?: string;
