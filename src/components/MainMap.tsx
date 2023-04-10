@@ -41,8 +41,8 @@ export default function MainMap() {
         </>
       )}
 
-      {stations.map((stationInfo) => (
-        <StationMarker key={stationInfo.id} station={stationInfo} />
+      {stations.map((station) => (
+        <StationMarker key={station.stationId} station={station} />
       ))}
 
       <SelectedPointMarker />
