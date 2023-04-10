@@ -11,7 +11,7 @@ export const leftJoinStationNearbyAndStationStatus = (
       ? [
           ...acc,
           {
-            id: stationNearby.stationId,
+            stationId: stationNearby.stationId,
             lat: stationNearby.lat,
             lng: stationNearby.lng,
             address: stationNearby.address,
