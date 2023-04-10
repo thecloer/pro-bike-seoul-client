@@ -5,7 +5,7 @@ const fetchKakaoKeywordSearch = async (
   query: string,
   options?: Pick<kakao.maps.services.PlacesSearchOptions, 'page' | 'size'>
 ): Promise<ApiResponse<KakaoPlace[]>> => {
-  const url = new URL('https://dapi.kakao.com/v2/local/search/keyword.json');
+  const url = new URL(`${KAKAO_REST_API.LOCAL_URL}/search/keyword.json`);
   url.searchParams.append('query', query);
   url.searchParams.append('page', options?.page?.toString() ?? '1');
   url.searchParams.append('size', options?.size?.toString() ?? '10');

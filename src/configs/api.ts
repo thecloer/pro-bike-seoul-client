@@ -35,5 +35,10 @@ export const SEOUL_BIKE_STATION_STATUS_API = {
 
 // Kakao REST API
 export const KAKAO_REST_API = {
-  AUTHORIZATION_HEADER: { Authorization: `KakaoAK ${import.meta.env.VITE_KAKAO_REST_KEY}` },
+  LOCAL_URL: 'https://dapi.kakao.com/v2/local',
+
+  AUTHORIZATION_HEADER: {
+    Authorization: `KakaoAK ${import.meta.env.VITE_KAKAO_REST_KEY}`,
+    'Content-Type': 'application/json',
+  },
 } as const;
