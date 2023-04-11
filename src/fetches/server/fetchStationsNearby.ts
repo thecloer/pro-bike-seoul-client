@@ -2,13 +2,13 @@ import type { Position, ServerStationInfo } from '@/types/data.type';
 import { SERVER_API } from '@/configs/api';
 import { ApiResponse } from '@/types/response.type';
 
-const SEARCH_RADIUS = 600; // meters
+const FINDING_COUNT = 10; // meters
 
 const fetchStationsNearby = async (point: Position): Promise<ApiResponse<ServerStationInfo[]>> => {
   const url = new URL(`${SERVER_API.URL}/bike/stations/nearby`);
   url.searchParams.append('lat', point.lat.toString());
   url.searchParams.append('lng', point.lng.toString());
-  url.searchParams.append('radius', SEARCH_RADIUS.toString());
+  url.searchParams.append('count', FINDING_COUNT.toString());
 
   try {
     const response: ApiResponse<ServerStationInfo[]> = await fetch(url, {
