@@ -1,11 +1,11 @@
 import type { ServerStationInfo } from '@/types/data.type';
 import React, { useState } from 'react';
+import { ReactComponent as LocationIcon } from '@/lib/svg/location.svg';
 import MarkerInfoWindow from '@/components/MarkerInfoWindow';
 import CustomDiv from '@/components/CustomDiv';
-import { ReactComponent as LocationIcon } from '@/lib/svg/location.svg';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
-import usePanTo from '@/hooks/usePanTo';
 import { usePath } from '@/contexts/PathContext';
+import usePanTo from '@/hooks/usePanTo';
 
 type Props = {
   station: ServerStationInfo;
@@ -15,6 +15,7 @@ export default React.memo(function StationMarker({
   station: { stationId, stationName, lat, lng, address, addressName, rackCount, availableBikeCount },
 }: Props) {
   const { setSelectedPoint } = useSelectedPoint();
+
   const { setStartPoint, setEndPoint } = usePath();
   const panTo = usePanTo();
   const [isOpen, setIsOpen] = useState(false);

@@ -1,19 +1,16 @@
 import { Map } from 'react-kakao-maps-sdk';
-import { useEffect } from 'react';
 import { UOS_POSITION } from '@/configs/defaultValues';
 import useWatchPosition from '@/hooks/useWatchPosition';
 import PanToCurrentLocationButton from '@/components/PanToCurrentLocationButton';
 import CurrentLocationMarker from '@/components/CurrentLocationMarker';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
 import SelectedPointMarker from '@/components/SelectedPointMarker';
-import StationMarker from '@/components/StationMarker';
 import PathPanel from '@/components/pathPanel/PathPanel';
-import useStationsNearby from '@/hooks/queries/useStationsNearby';
+import StationsNearby from '@/components/StationsNearby';
 
 export default function MainMap() {
   const currentPosition = useWatchPosition();
-  const { selectedPoint, setSelectedPoint } = useSelectedPoint();
-  const stationsQuery = useStationsNearby(selectedPoint);
+  const { setSelectedPoint } = useSelectedPoint();
 
   const onMapClick = (target: kakao.maps.Map, mouseEvent: kakao.maps.event.MouseEvent) => {
     (document.activeElement as HTMLElement).blur(); // blur input
@@ -36,9 +33,7 @@ export default function MainMap() {
         </>
       )}
 
-      {stationsQuery.isSuccess &&
-        stationsQuery.data.map((station) => <StationMarker key={station.stationId} station={station} />)}
-
+      <StationsNearby />
       <SelectedPointMarker />
       <PathPanel />
     </Map>
