@@ -32,14 +32,13 @@ const fetchKakaoKeywordSearch = async (
       message: response.message,
     };
   } catch (error) {
-    console.log('ERROR in fetchKakaoKeywordSearch');
     console.error(error);
     return {
       success: false,
       url: url.toString(),
       statusCode: 500,
       error: 'Internal Server Error',
-      message: 'Internal Server Error',
+      message: 'ERROR in fetchKakaoKeywordSearch',
     };
   }
 };
