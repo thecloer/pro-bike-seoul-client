@@ -28,6 +28,12 @@ export default function PathPanel() {
     const { leftBottom, rightTop } = route.summary.bounds;
     setBounds(leftBottom, rightTop);
     setSelectedPoint(null);
+    setShowInfo(true);
+  };
+
+  const onResetButtonClick = () => {
+    setRoute(null);
+    setShowInfo(false);
   };
 
   return (
@@ -59,9 +65,18 @@ export default function PathPanel() {
           <div className='border-t-[1px] shadow-inner'>
             <div className='p-3'>
               <div className=''>
-                <div className='mb-2'>
-                  <span className='font-medium text-xl'>{Math.ceil(route.summary.time / 60)}분</span>
-                  <span className='ml-2 text-sm text-slate-600'>{route.summary.distance}km</span>
+                <div className='flex mb-2 items-end justify-between'>
+                  <div>
+                    <span className='font-medium text-xl'>{Math.ceil(route.summary.time / 60)}분</span>
+                    <span className='ml-2 text-sm text-slate-600'>{route.summary.distance}km</span>
+                  </div>
+
+                  <button
+                    className='text-sm rounded-md bg-primary-500 text-white font-medium px-3 py-1 hover:bg-primary-600'
+                    onClick={onResetButtonClick}
+                  >
+                    초기화
+                  </button>
                 </div>
                 <div className='flex items-center text-sm'>
                   <span>{trip.start.text}</span>
