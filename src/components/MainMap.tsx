@@ -7,6 +7,7 @@ import { useSelectedPoint } from '@/contexts/SelectedPointContext';
 import SelectedPointMarker from '@/components/SelectedPointMarker';
 import PathPanel from '@/components/pathPanel/PathPanel';
 import StationsNearby from '@/components/StationsNearby';
+import Trip from '@/components/Trip';
 
 export default function MainMap() {
   const currentPosition = useWatchPosition();
@@ -33,6 +34,7 @@ export default function MainMap() {
         </>
       )}
 
+      <Trip />
       <StationsNearby />
       <SelectedPointMarker />
       <PathPanel />
