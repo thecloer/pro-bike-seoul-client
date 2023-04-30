@@ -19,7 +19,47 @@ export type ServerStationInfo = Position & {
   availableBikeCount: number;
 };
 
-// Kakao API data types
+export type PathData = {
+  distance: number;
+  time: number;
+  bbox: [number, number, number, number]; // [minLon, minLat, maxLon, maxLat]
+  points: Position[]; // [lon, lat] or [lon, lat, ele]
+  waypoints: Position[];
+};
+
+export type Route = {
+  summary: {
+    points: Position[];
+    bounds: {
+      leftBottom: Position;
+      rightTop: Position;
+    };
+    time: number; // seconds
+    distance: number;
+  };
+  shapes: {
+    encodedPolyline: string;
+    bounds: {
+      leftBottom: Position;
+      rightTop: Position;
+    };
+  }[];
+  maneuvers: {
+    time: number;
+    distance: number;
+    shapeIndex: {
+      legNumber: number; // which shape in shapes
+      begin: number; // begin in the shape
+      end: number; // end in the shape
+    };
+    instructions: {
+      instruction: string;
+      postTransition?: string;
+      preTransition?: string;
+      transitionAlert?: string;
+    };
+  }[];
+};
 
 // Client data types
 
@@ -35,10 +75,10 @@ export type PositionInfo = Position & {
   roadAddress?: string;
 };
 
-type SearchKeywordInfo = {
+type SearchKeyword = {
   text: string;
 };
 
-export type SelectedPoint = (PositionInfo & Partial<SearchKeywordInfo>) | null;
+export type SelectedPoint = (PositionInfo & Partial<SearchKeyword>) | null;
 
-export type PathPointInfo = SearchKeywordInfo | (SearchKeywordInfo & PositionInfo);
+export type RouteEndPoint = SearchKeyword & (PositionInfo | {});

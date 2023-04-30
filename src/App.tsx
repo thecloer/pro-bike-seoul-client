@@ -1,18 +1,18 @@
 import Header from '@/components/Header';
 import MainMap from '@/components/MainMap';
 import { SelectedPointProvider } from '@/contexts/SelectedPointContext';
-import { PathProvider } from '@/contexts/PathContext';
+import { RouteProvider } from '@/contexts/TripContext';
 
 function App() {
   return (
     <main className='h-full flex flex-col'>
       <Header />
       <main className='w-full mx-auto grow relative'>
-        <PathProvider>
+        <RouteProvider>
           <SelectedPointProvider>
             <MainMap />
           </SelectedPointProvider>
-        </PathProvider>
+        </RouteProvider>
       </main>
     </main>
   );

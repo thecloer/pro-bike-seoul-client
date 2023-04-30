@@ -1,5 +1,5 @@
 import type { KakaoPlace } from '@/types/response.type';
-import type { PathPointInfo } from '@/types/data.type';
+import type { RouteEndPoint } from '@/types/data.type';
 import { useEffect, useState } from 'react';
 import useDebounce from '@/hooks/useDebounce';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
@@ -7,8 +7,8 @@ import fetchKakaoKeywordSearch from '@/fetches/thirdParty/fetchKakaoKeywordSearc
 
 type Props = {
   placeholder?: string;
-  point: PathPointInfo;
-  setPoint: (point: PathPointInfo) => void;
+  point: RouteEndPoint;
+  setPoint: (point: RouteEndPoint) => void;
 };
 
 export default function PathPointInput({ placeholder, point, setPoint }: Props) {
@@ -19,7 +19,7 @@ export default function PathPointInput({ placeholder, point, setPoint }: Props) 
   const searchKeyword = useDebounce(point.text, 500);
 
   const selectItem = (item: KakaoPlace) => {
-    const point: PathPointInfo = {
+    const point: RouteEndPoint = {
       text: item.place_name,
       lat: Number(item.y),
       lng: Number(item.x),

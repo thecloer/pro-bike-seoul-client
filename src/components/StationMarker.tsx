@@ -4,7 +4,7 @@ import { ReactComponent as LocationIcon } from '@/lib/svg/location.svg';
 import MarkerInfoWindow from '@/components/MarkerInfoWindow';
 import CustomDiv from '@/components/CustomDiv';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
-import { usePath } from '@/contexts/PathContext';
+import { useRoute } from '@/contexts/TripContext';
 import usePanTo from '@/hooks/usePanTo';
 
 type Props = {
@@ -16,7 +16,7 @@ export default React.memo(function StationMarker({
 }: Props) {
   const { setSelectedPoint } = useSelectedPoint();
 
-  const { setStartPoint, setEndPoint } = usePath();
+  const { setStartPoint, setEndPoint } = useRoute();
   const panTo = usePanTo();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,7 +28,6 @@ export default React.memo(function StationMarker({
   const onStartClick = () => setStartPoint({ lat, lng, text: stationName, address });
   const onEndClick = () => setEndPoint({ lat, lng, text: stationName, address });
 
-  // TODO: info window
   return (
     <CustomDiv
       center={{ lat, lng }}
