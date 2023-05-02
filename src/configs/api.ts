@@ -1,6 +1,6 @@
 // Server API
 export const SERVER_API = {
-  URL: `${import.meta.env.VITE_SERVER_URL}/api/v1`,
+  URL: `${import.meta.env.MODE === 'production' ? import.meta.env.BASE_URL : import.meta.env.VITE_SERVER_URL}/api/v1`,
 } as const;
 
 // Kakao REST API
