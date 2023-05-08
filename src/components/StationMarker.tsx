@@ -16,10 +16,11 @@ export default React.memo(function StationMarker({
   const { setStartPoint, setEndPoint } = useRoute();
   const panTo = usePanTo();
   const [isOpen, setIsOpen] = useState(false);
+  const text = stationName ? stationName : addressName;
 
   const onMarkerClick = () => panTo({ lat, lng });
-  const onStartClick = () => setStartPoint({ lat, lng, text: stationName, address });
-  const onEndClick = () => setEndPoint({ lat, lng, text: stationName, address });
+  const onStartClick = () => setStartPoint({ lat, lng, text, address });
+  const onEndClick = () => setEndPoint({ lat, lng, text, address });
 
   return (
     <CustomDiv
@@ -29,7 +30,7 @@ export default React.memo(function StationMarker({
       onMouseDown={(e) => e.stopPropagation()}
       onMouseOver={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
-      onTouchStart={() => setIsOpen((prev) => !prev)}
+      onTouchStart={(e) => e.stopPropagation()}
     >
       <LocationIcon className='absolute bottom-1/2 left-0 w-full h-full text-primary-600' />
 
@@ -52,22 +53,12 @@ export default React.memo(function StationMarker({
               <button
                 className='border border-primary-600 px-1 rounded bg-primary-600 text-slate-100'
                 onClick={onStartClick}
-                onTouchStart={(e) => {
-                  e.stopPropagation();
-                  onStartClick();
-                }}
+                onTouchEnd={(e) => onStartClick()}
               >
                 출발
               </button>
             )}
-            <button
-              className='border border-primary-600 px-1 rounded'
-              onClick={onEndClick}
-              onTouchStart={(e) => {
-                e.stopPropagation();
-                onEndClick();
-              }}
-            >
+            <button className='border border-primary-600 px-1 rounded' onClick={onEndClick} onTouchEnd={(e) => onEndClick()}>
               도착
             </button>
           </div>
