@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { ReactComponent as LocationIcon } from '@/lib/svg/location.svg';
 import MarkerInfoWindow from '@/components/MarkerInfoWindow';
 import CustomDiv from '@/components/CustomDiv';
-import { useSelectedPoint } from '@/contexts/SelectedPointContext';
 import { useRoute } from '@/contexts/TripContext';
 import usePanTo from '@/hooks/usePanTo';
 
@@ -14,8 +13,6 @@ type Props = {
 export default React.memo(function StationMarker({
   station: { stationId, stationName, lat, lng, address, addressName, rackCount, availableBikeCount },
 }: Props) {
-  const { setSelectedPoint } = useSelectedPoint();
-
   const { setStartPoint, setEndPoint } = useRoute();
   const panTo = usePanTo();
   const [isOpen, setIsOpen] = useState(false);
