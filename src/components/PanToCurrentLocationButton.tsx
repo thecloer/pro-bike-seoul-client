@@ -1,12 +1,16 @@
 import type { Position } from '@/types/data.type';
 import PanToButton from '@/components/PanToButton';
 import { ReactComponent as LocationIcon } from '@/lib/svg/location.svg';
+import { useEffect } from 'react';
+import usePanTo from '@/hooks/usePanTo';
 
 type Props = {
   to: Position;
 };
 
 export default function PanToCurrentLocationButton({ to }: Props) {
+  const panTo = usePanTo();
+  useEffect(() => panTo(to), []);
   return (
     <PanToButton
       to={to}
