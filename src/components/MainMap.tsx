@@ -5,7 +5,7 @@ import PanToCurrentLocationButton from '@/components/PanToCurrentLocationButton'
 import CurrentLocationMarker from '@/components/CurrentLocationMarker';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
 import SelectedPointMarker from '@/components/SelectedPointMarker';
-import PathPanel from '@/components/pathPanel/PathPanel';
+import Panel from '@/components/Panel/Panel';
 import StationsNearby from '@/components/StationsNearby';
 import Trip from '@/components/Trip';
 
@@ -22,11 +22,7 @@ export default function MainMap() {
   };
 
   return (
-    <Map
-      className='w-full h-full z-0'
-      center={currentPosition.loaded ? currentPosition.coords : UOS_POSITION}
-      onClick={onMapClick}
-    >
+    <Map className='w-full h-full z-0' center={UOS_POSITION} onClick={onMapClick}>
       {currentPosition.loaded && (
         <>
           <CurrentLocationMarker center={currentPosition.coords} />
@@ -37,7 +33,7 @@ export default function MainMap() {
       <Trip />
       <StationsNearby />
       <SelectedPointMarker />
-      <PathPanel />
+      <Panel />
     </Map>
   );
 }

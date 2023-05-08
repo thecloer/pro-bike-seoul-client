@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import PathPointInput from './PathPointInput';
+import TripPointInput from './TripPointInput';
 import { useSelectedPoint } from '@/contexts/SelectedPointContext';
 import { useRoute } from '@/contexts/TripContext';
-import SwapButton from '@/components/SwapButton';
+import SwapButton from '@/components/Panel/SwapButton';
 import fetchDirection from '@/fetches/server/fetchDirection';
 import useBounds from '@/hooks/useBounds';
 import { ReactComponent as RightArrowIcon } from '@/lib/svg/rightArrow.svg';
 import { isPosition } from '@/lib/helper';
 
-export default function PathPanel() {
+export default function Panel() {
   const { trip, setEndPoint, setStartPoint, swapDestination, setRoute } = useRoute();
   const { setSelectedPoint } = useSelectedPoint();
   const setBounds = useBounds();
@@ -38,13 +38,13 @@ export default function PathPanel() {
 
   return (
     <div className='absolute top-0 left-0 flex flex-col w-full sm:max-w-sm'>
-      <div className='m-2 rounded-lg shadow-xl border-[1px] bg-white relative'>
-        <div className='p-3'>
+      <div className='m-2 rounded-lg shadow-xl border-[1px] bg-white'>
+        <div className='p-3 relative'>
           <div className='relative flex rounded border border-slate-500'>
             <div className='grow flex flex-col rounded'>
-              <PathPointInput point={trip.start} setPoint={setStartPoint} placeholder='출발지' />
+              <TripPointInput point={trip.start} setPoint={setStartPoint} placeholder='출발지' />
               <div className='border-t-[1px] my-[3px]'></div>
-              <PathPointInput point={trip.end} setPoint={setEndPoint} placeholder='목적지' />
+              <TripPointInput point={trip.end} setPoint={setEndPoint} placeholder='목적지' />
             </div>
             <div className='absolute right-3 top-0 bottom-0 flex flex-col justify-center'>
               <SwapButton srOnly='출발지 목적지 변경' onClick={swapDestination} />
@@ -59,6 +59,23 @@ export default function PathPanel() {
               길찾기
             </button>
           </div>
+
+          {route === null ? null : (
+            <button
+              className={`group border px-2 absolute left-1/2 -translate-x-1/2 bg-white bottom-0 ${
+                showInfo ? 'rounded-t pt-1' : 'rounded-b pb-1 translate-y-full '
+              }`}
+              onClick={() => setShowInfo((prev) => !prev)}
+            >
+              <div
+                className={`border-[10px] border-x-transparent w-0 h-0 ${
+                  showInfo
+                    ? 'border-b-primary-500 group-hover:border-b-primary-600 border-t-0'
+                    : 'border-t-primary-500 group-hover:border-t-primary-600 border-b-0'
+                }`}
+              />
+            </button>
+          )}
         </div>
 
         {route !== null && showInfo ? (
@@ -98,23 +115,6 @@ export default function PathPanel() {
             </div>
           </div>
         ) : null}
-
-        {route === null ? null : (
-          <button
-            className={`group border px-2 absolute bottom-0 left-6 -translate-x-1/2 bg-inherit ${
-              showInfo ? 'rounded-t pt-1' : 'rounded-b pb-1 translate-y-full'
-            }`}
-            onClick={() => setShowInfo((prev) => !prev)}
-          >
-            <div
-              className={`border-8 border-x-transparent w-0 h-0 ${
-                showInfo
-                  ? 'border-b-primary-500 group-hover:border-b-primary-600 border-t-0'
-                  : 'border-t-primary-500 group-hover:border-t-primary-600 border-b-0'
-              }`}
-            />
-          </button>
-        )}
       </div>
     </div>
   );
