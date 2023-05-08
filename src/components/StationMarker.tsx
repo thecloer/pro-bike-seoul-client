@@ -20,11 +20,7 @@ export default React.memo(function StationMarker({
   const panTo = usePanTo();
   const [isOpen, setIsOpen] = useState(false);
 
-  const onMarkerClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    setSelectedPoint(null);
-    panTo({ lat, lng });
-  };
-
+  const onMarkerClick = () => panTo({ lat, lng });
   const onStartClick = () => setStartPoint({ lat, lng, text: stationName, address });
   const onEndClick = () => setEndPoint({ lat, lng, text: stationName, address });
 
@@ -36,6 +32,7 @@ export default React.memo(function StationMarker({
       onMouseDown={(e) => e.stopPropagation()}
       onMouseOver={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
+      onTouchStart={() => setIsOpen((prev) => !prev)}
     >
       <LocationIcon className='absolute bottom-1/2 left-0 w-full h-full text-primary-600' />
 
@@ -54,10 +51,26 @@ export default React.memo(function StationMarker({
             <div className='text-xs text-slate-600'>{address}</div>
           </div>
           <div className='flex justify-end gap-1'>
-            <button className='border border-primary-600 px-1 rounded bg-primary-600 text-slate-100' onClick={onStartClick}>
-              출발
-            </button>
-            <button className='border border-primary-600 px-1 rounded' onClick={onEndClick}>
+            {availableBikeCount < 1 ? null : (
+              <button
+                className='border border-primary-600 px-1 rounded bg-primary-600 text-slate-100'
+                onClick={onStartClick}
+                onTouchStart={(e) => {
+                  e.stopPropagation();
+                  onStartClick();
+                }}
+              >
+                출발
+              </button>
+            )}
+            <button
+              className='border border-primary-600 px-1 rounded'
+              onClick={onEndClick}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+                onEndClick();
+              }}
+            >
               도착
             </button>
           </div>
