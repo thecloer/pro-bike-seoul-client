@@ -38,8 +38,6 @@ export default function PathPointInput({ placeholder, point, setPoint }: Props) 
       setSearchResult([]);
       return;
     }
-
-    // TODO: add react-query
     const getSearchKeywordResult = async () => {
       const result = await fetchKakaoKeywordSearch(searchKeyword);
       if (result.success) return setSearchResult(result.data);
