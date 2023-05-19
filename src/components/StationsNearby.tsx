@@ -21,6 +21,8 @@ export default function StationsNearby() {
     getStationsNearby();
   }, [selectedPoint]);
 
+  if (selectedPoint === null) return null;
+
   return (
     <>
       {stationsNearby.map((station) => (
