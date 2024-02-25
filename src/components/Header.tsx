@@ -10,7 +10,7 @@ function Header() {
           <span className='text-xl font-semibold'>프로 따릉러</span>
         </div>
         <div>
-          <a href={siteMeta.githubUrl} className='text-primary-400 transition-colors hover:text-primary-500'>
+          <a href={siteMeta.githubUrl} className='text-primary-400 transition-colors hover:text-primary-500' target='_blank'>
             <span className='sr-only'>github link</span>
             <GithubIcon className='w-6 h-6' />
           </a>
